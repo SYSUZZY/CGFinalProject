@@ -7,6 +7,10 @@
 *.suo  
 *.user  
 *.sln.docstates  
+*.sln
+*.vcxproj
+*.filters
+*.user
   
 # Build results  
   
