@@ -12,6 +12,8 @@
 *.filters
 *.user
 .vs/
+dll/
+libs/
 
 # Build results  
   
