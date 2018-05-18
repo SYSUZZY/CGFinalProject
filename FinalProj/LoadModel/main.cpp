@@ -82,7 +82,7 @@ int main()
 	//path = "../resource/model/nanosuit/nanosuit.obj";
 	//path = "../resource/model/kungfuPanda/file.obj";
 	//path = "../resource/model/Lilith/Lilith.obj";
-	path = "../resource/model/1709050736_20821/file.obj";
+	path = "../resource/model/Building/BHGY_JZ_QHD_YNX/BHGY_JZ_QHD_YNX.obj";
 	Model ourModel(path);
 
 
