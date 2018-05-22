@@ -11,6 +11,7 @@
 *.vcxproj
 *.filters
 *.user
+*.opendb
 .vs/
 dll/
 libs/
