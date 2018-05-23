@@ -78,8 +78,7 @@ int main()
 
 	// load models
 	// -----------
-	string path;
-	path = "resource/model/Panda/panda.obj";
+	string path = "resource/model/Panda/panda.obj";
 	Model pandaModel(path);
 
 
