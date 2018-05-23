@@ -16,6 +16,7 @@
 dll/
 libs/
 include/
+*.dll
 
 # Build results  
   

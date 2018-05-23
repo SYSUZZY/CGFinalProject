@@ -17,8 +17,8 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow *window);
 
 // settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 1000;
+const unsigned int SCR_HEIGHT = 1000;
 
 // camera
 Camera camera(glm::vec3(0.0f, 0.0f, 20.0f));
@@ -74,20 +74,17 @@ int main()
 
 	// build and compile shaders
 	// -------------------------
-	Shader ourShader("resource/shader/1.model_loading.vs", "resource/shader/1.model_loading.fs");
+	Shader pandaShader("resource/shader/1.model_loading.vs", "resource/shader/1.model_loading.fs");
 
 	// load models
 	// -----------
 	string path;
-	//path = "resource/model/nanosuit/nanosuit.obj";
-	//path = "resource/model/kungfuPanda/file.obj";
-	//path = "resource/model/Lilith/Lilith.obj";
-	path = "resource/model/Panda/file.obj";
-	Model ourModel(path);
+	path = "resource/model/Panda/panda.obj";
+	Model pandaModel(path);
 
 
 	// draw in wireframe
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	// render loop
 	// -----------
@@ -109,21 +106,20 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// don't forget to enable shader before setting uniforms
-		ourShader.use();
+		pandaShader.use();
 
 		// view/projection transformations
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 		glm::mat4 view = camera.GetViewMatrix();
-		ourShader.setMat4("projection", projection);
-		ourShader.setMat4("view", view);
+		pandaShader.setMat4("projection", projection);
+		pandaShader.setMat4("view", view);
 
 		// render the loaded model
 		glm::mat4 model;
 		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f)); // translate it down so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));	// it's a bit too big for our scene, so scale it down
-		ourShader.setMat4("model", model);
-		ourModel.Draw(ourShader);
-
+		model = glm::scale(model, glm::vec3(0.005f, 0.005f, 0.005f));	// it's a bit too big for our scene, so scale it down
+		pandaShader.setMat4("model", model);
+		pandaModel.Draw(pandaShader);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
@@ -138,12 +134,10 @@ int main()
 }
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
-// ---------------------------------------------------------------------------------------------------------
 void processInput(GLFWwindow *window)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
-
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		camera.ProcessKeyboard(FORWARD, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -155,7 +149,6 @@ void processInput(GLFWwindow *window)
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
-// ---------------------------------------------------------------------------------------------
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	// make sure the viewport matches the new window dimensions; note that width and 
@@ -164,7 +157,6 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 }
 
 // glfw: whenever the mouse moves, this callback is called
-// -------------------------------------------------------
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
 	if (firstMouse)
@@ -184,7 +176,6 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
-// ----------------------------------------------------------------------
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	camera.ProcessMouseScroll(yoffset);
