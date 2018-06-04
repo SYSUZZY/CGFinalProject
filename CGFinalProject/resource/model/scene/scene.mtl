@@ -1,5 +1,19 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# File Created: 01.06.2018 18:27:02
+# File Created: 04.06.2018 18:24:33
+
+newmtl Material__1077
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka dsBuffer_bmp.tga
+	map_Kd dsBuffer_bmp.tga
 
 newmtl Material__3214
 	Ns 10.0000
@@ -645,31 +659,3 @@ newmtl Material__103
 	Ke 0.0000 0.0000 0.0000
 	map_Ka ggtt_chuantiao_010.tga
 	map_Kd ggtt_chuantiao_010.tga
-
-newmtl Material__30
-	Ns 10.0000
-	Ni 1.5000
-	d 1.0000
-	Tr 0.0000
-	Tf 1.0000 1.0000 1.0000 
-	illum 2
-	Ka 0.5880 0.5880 0.5880
-	Kd 0.5880 0.5880 0.5880
-	Ks 0.0000 0.0000 0.0000
-	Ke 0.0000 0.0000 0.0000
-	map_Ka abstract_1975989_1280.tga
-	map_Kd abstract_1975989_1280.tga
-
-newmtl Material__1065
-	Ns 10.0000
-	Ni 1.5000
-	d 1.0000
-	Tr 0.0000
-	Tf 1.0000 1.0000 1.0000 
-	illum 2
-	Ka 0.5880 0.5880 0.5880
-	Kd 0.5880 0.5880 0.5880
-	Ks 0.0000 0.0000 0.0000
-	Ke 0.0000 0.0000 0.0000
-	map_Ka 2_1511241H412424.tga
-	map_Kd 2_1511241H412424.tga
