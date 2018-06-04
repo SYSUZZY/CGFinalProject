@@ -21,7 +21,7 @@ const unsigned int SCR_WIDTH = 1000;
 const unsigned int SCR_HEIGHT = 1000;
 
 // camera
-Camera camera(glm::vec3(0.0f, 0.0f, 20.0f));
+Camera camera(glm::vec3(0.0f, 0.0f, 50.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -78,8 +78,11 @@ int main()
 
 	// load models
 	// -----------
-	string path = "resource/model/Panda/panda.obj";
-	Model pandaModel(path);
+	string pandaPath = "resource/model/Panda/panda.obj";
+	string sencePath = "resource/model/scene2/scene.obj";
+	//Model pandaModel(pandaPath);
+	//Model MeteoriteModel(MeteoritePath);
+	Model senceModel(sencePath);
 
 
 	// draw in wireframe
@@ -115,10 +118,20 @@ int main()
 
 		// render the loaded model
 		glm::mat4 model;
-		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f)); // translate it down so it's at the center of the scene
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(0.005f, 0.005f, 0.005f));	// it's a bit too big for our scene, so scale it down
-		pandaShader.setMat4("model", model);
-		pandaModel.Draw(pandaShader);
+
+		glm::mat4 model1;
+		model1 = glm::translate(model1, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+		//model1 = glm::scale(model1, glm::vec3(0.005f, 0.005f, 0.005f));
+
+		//pandaShader.setMat4("model", model);
+		//pandaModel.Draw(pandaShader);
+
+		pandaShader.setMat4("model", model1);
+		//MeteoriteModel.Draw(pandaShader);
+
+		senceModel.Draw(pandaShader);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
