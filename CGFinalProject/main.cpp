@@ -21,7 +21,7 @@ const unsigned int SCR_WIDTH = 1000;
 const unsigned int SCR_HEIGHT = 1000;
 
 // camera
-Camera camera(glm::vec3(0.0f, 0.0f, 50.0f));
+Camera camera(glm::vec3(10.0f, 10.0f, 50.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -79,7 +79,7 @@ int main()
 	// load models
 	// -----------
 	string pandaPath = "resource/model/Panda/panda.obj";
-	string sencePath = "resource/model/scene2/scene.obj";
+	string sencePath = "resource/model/scene/scene.obj";
 	//Model pandaModel(pandaPath);
 	//Model MeteoriteModel(MeteoritePath);
 	Model senceModel(sencePath);
