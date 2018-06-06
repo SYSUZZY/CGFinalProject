@@ -4,9 +4,8 @@
 #include <ctime>
 #include <math.h>
 #include <glm/glm.hpp>
-#include "../../vendor/MyCamera/MyCamera.h"
 #include "../../vendor/texture/texture.h"
-#include "../../vendor/myshader/myshader.h"
+#include "../../my_class/shader/shader.h"
 
 namespace Flame {
 	#define PARTICLE_TYPE_LAUNCHER 0.0f
@@ -64,8 +63,8 @@ namespace Flame {
 		CTexture mStartTexture;
 		float mTimer;//粒子发射器已经发射的时间
 		bool mFirst;
-		MyShader* mUpdateShader;//更新粒子的GPUProgram
-		MyShader* mRenderShader;//渲染粒子的GPUProgram
+		Shader* mUpdateShader;//更新粒子的GPUProgram
+		Shader* mRenderShader;//渲染粒子的GPUProgram
 	};
 
 }

@@ -14,11 +14,11 @@ namespace Flame{
 			"Alpha1","Size1",
 			"Life1"
 		};//设置TransformFeedback要捕获的输出变量
-		mUpdateShader = new MyShader("resource/shader/Update.vs", "resource/shader/Update.fs", 
+		mUpdateShader = new Shader("resource/shader/Update.vs", "resource/shader/Update.fs", 
 								"resource/shader/Update.gs", varyings, 7);
 		//设置TransformFeedback缓存能够记录的顶点的数据类型
 
-		mRenderShader = new MyShader("resource/shader/Render.vs", "resource/shader/Render.fs");
+		mRenderShader = new Shader("resource/shader/Render.vs", "resource/shader/Render.fs");
 		//设置随机纹理
 		InitRandomTexture(580);
 		mSparkTexture.loadTexture("resource/texture/particle.bmp");

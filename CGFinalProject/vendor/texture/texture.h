@@ -3,7 +3,7 @@
 #include "../GL/glew.h"
 #include <iostream>
 #include <string>
-#include "stb_image.h"
+#include "../../my_class/stb_image.h"
 
 using namespace std;
 
