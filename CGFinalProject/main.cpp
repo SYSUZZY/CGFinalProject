@@ -1,10 +1,18 @@
-#include <glad/glad.h>
+#pragma comment(lib,"glew32.lib")
+#include <stdlib.h>
+#include <math.h>
+#include <algorithm>
+#include <fstream>
+#include <string>
+
+#include "my_class/include/glew.h"
 #include <GLFW/glfw3.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "my_class/particle/Flame.h"
 #include "my_class/shader/shader_m.h"
 #include "my_class/camera/camera.h"
 #include "my_class/model/model.h"
@@ -32,7 +40,7 @@ float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
 // PhysicsEngine
-PhysicsEngine *physicsEngine;
+//PhysicsEngine *physicsEngine;
 
 int main()
 {
@@ -66,26 +74,29 @@ int main()
 
 	// glad: load all OpenGL function pointers
 	// ---------------------------------------
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		std::cout << "Failed to initialize GLAD" << std::endl;
+	glewExperimental = GL_TRUE;
+	if (glewInit() != GLEW_OK) {
+		std::cout << "Failed to initialize GLEW" << std::endl;
 		return -1;
 	}
 
 	// configure global opengl state
 	// -----------------------------
+	Flame::Flame flame;
 	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
 
 	// build and compile shaders
 	// -------------------------
 	Shader pandaShader("resource/shader/1.model_loading.vs", "resource/shader/1.model_loading.fs");
 	Shader sceneShader("resource/shader/1.model_loading.vs", "resource/shader/1.model_loading.fs");
+	Shader meteoriteShader("resource/shader/1.model_loading.vs", "resource/shader/1.model_loading.fs");
 
 	// load models
 	// -----------
 	string pandaPath = "resource/model/Panda_animation/panda.FBX";
 	string sencePath = "resource/model/scene/scene.obj";
-	
+	string meteoritePath = "resource/model/Meteorite/stg600_obj_meteoriteB01.obj";
 	
 
 	std::cout << "Start loading panda" << std::endl;
@@ -96,14 +107,14 @@ int main()
 	Model senceModel(sencePath);
 	std::cout << "Scene complete" << std::endl;
 
-	//std::cout << "Start loading MeteoritePath" << std::endl;
-	//Model MeteoriteModel(MeteoritePath);
-	//std::cout << "MeteoritePath complete" << std::endl;
+	std::cout << "Start loading meteorite" << std::endl;
+	Model meteoriteModel(meteoritePath);
+	std::cout << "Meteorite complete" << std::endl;
 
 	// ÉèÖÃcollisionBox
-	physicsEngine = new PhysicsEngine;
-	physicsEngine->setSceneOuterBoundary(glm::vec2 (-80, -60), glm::vec2(132, 60));
-	physicsEngine->setSceneInnerBoundary(glm::vec3(-80, -1, -60), glm::vec3(132, 1, 60));
+	//physicsEngine = new PhysicsEngine;
+	//physicsEngine->setSceneOuterBoundary(glm::vec2 (-80, -60), glm::vec2(132, 60));
+	//physicsEngine->setSceneInnerBoundary(glm::vec3(-80, -1, -60), glm::vec3(132, 1, 60));
 
 	// draw in wireframe
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -152,12 +163,25 @@ int main()
 		model_scene = glm::translate(model_scene, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
 		//model1 = glm::scale(model1, glm::vec3(0.005f, 0.005f, 0.005f));
 
+		glm::mat4 model_meteorite;
+		model_meteorite = glm::translate(model_meteorite, glm::vec3(0.0f, 50.0f, -50.0f));
+
 		pandaShader.setMat4("model", model_panda);
-		pandaModel.Draw(pandaShader);
+		//pandaModel.Draw(pandaShader);
 
 
 		sceneShader.setMat4("model", model_scene);
 		senceModel.Draw(sceneShader);
+
+		meteoriteShader.setMat4("model", model_meteorite);
+		meteoriteModel.Draw(meteoriteShader);
+
+		projection = glm::mat4(1.0f);
+		glm::mat4 model_flame;
+		model_flame = glm::translate(model_flame, glm::vec3(0.0f, 0.0f, 0.0f));
+		view = camera.GetViewMatrix();
+		projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 1000.0f);
+		flame.Render(deltaTime, model_flame, view, projection);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
