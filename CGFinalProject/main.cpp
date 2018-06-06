@@ -21,7 +21,11 @@ const unsigned int SCR_WIDTH = 1000;
 const unsigned int SCR_HEIGHT = 1000;
 
 // camera
+<<<<<<< HEAD
 Camera camera(glm::vec3(10.0f, 10.0f, 10.0f));
+=======
+Camera camera(glm::vec3(0.0f, 1.0f, -20.0f));
+>>>>>>> 5df97bbcb3b03148004975883aa45db7cdbbb129
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -75,15 +79,27 @@ int main()
 	// build and compile shaders
 	// -------------------------
 	Shader pandaShader("resource/shader/1.model_loading.vs", "resource/shader/1.model_loading.fs");
+	Shader sceneShader("resource/shader/1.model_loading.vs", "resource/shader/1.model_loading.fs");
 
 	// load models
 	// -----------
 	string pandaPath = "resource/model/Panda_animation/panda.FBX";
 	string sencePath = "resource/model/scene/scene.obj";
+<<<<<<< HEAD
 	//Model pandaModel(pandaPath);
 	//Model MeteoriteModel(MeteoritePath);
 	Model senceModel(pandaPath);
+=======
+	
 
+	std::cout << "Start loading panda" << std::endl;
+	Model pandaModel(pandaPath);
+	std::cout << "Panda complete" << std::endl;
+>>>>>>> 5df97bbcb3b03148004975883aa45db7cdbbb129
+
+	std::cout << "Start loading scene" << std::endl;
+	Model senceModel(sencePath);
+	std::cout << "Scene complete" << std::endl;
 
 	// draw in wireframe
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -109,29 +125,37 @@ int main()
 
 		// don't forget to enable shader before setting uniforms
 		pandaShader.use();
+		sceneShader.use();
 
 		// view/projection transformations
-		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 1000.0f);
 		glm::mat4 view = camera.GetViewMatrix();
 		pandaShader.setMat4("projection", projection);
+		sceneShader.setMat4("projection", projection);
 		pandaShader.setMat4("view", view);
+		sceneShader.setMat4("view", view);
 
 		// render the loaded model
-		glm::mat4 model;
-		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.005f, 0.005f, 0.005f));	// it's a bit too big for our scene, so scale it down
+		glm::mat4 model_panda;
+		model_panda = glm::translate(model_panda, camera.Position); // translate it down so it's at the center of the scene
+		model_panda = glm::scale(model_panda, glm::vec3(0.01f, 0.01f, 0.01f));	// it's a bit too big for our scene, so scale it down
 
+<<<<<<< HEAD
 		glm::mat4 model1;
 		model1 = glm::translate(model1, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
 		model1 = glm::scale(model1, glm::vec3(0.05f, 0.05f, 0.05f));
+=======
+		glm::mat4 model_scene;
+		model_scene = glm::translate(model_scene, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+		//model1 = glm::scale(model1, glm::vec3(0.005f, 0.005f, 0.005f));
+>>>>>>> 5df97bbcb3b03148004975883aa45db7cdbbb129
 
-		//pandaShader.setMat4("model", model);
-		//pandaModel.Draw(pandaShader);
+		pandaShader.setMat4("model", model_panda);
+		pandaModel.Draw(pandaShader);
 
-		pandaShader.setMat4("model", model1);
-		//MeteoriteModel.Draw(pandaShader);
 
-		senceModel.Draw(pandaShader);
+		sceneShader.setMat4("model", model_scene);
+		senceModel.Draw(sceneShader);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
