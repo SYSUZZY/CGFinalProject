@@ -8,6 +8,7 @@
 #include "my_class/shader/shader_m.h"
 #include "my_class/camera/camera.h"
 #include "my_class/model/model.h"
+#include "my_class/tools/PhysicsEngine.h"
 
 #include <iostream>
 
@@ -29,6 +30,9 @@ bool firstMouse = true;
 // timing
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
+
+// PhysicsEngine
+PhysicsEngine *physicsEngine;
 
 int main()
 {
@@ -90,6 +94,12 @@ int main()
 	std::cout << "Start loading scene" << std::endl;
 	Model senceModel(sencePath);
 	std::cout << "Scene complete" << std::endl;
+
+	// ÉèÖÃcollisionBox
+	physicsEngine = new PhysicsEngine;
+	physicsEngine->setSceneOuterBoundary(glm::vec2 (-80, -60), glm::vec2(132, 60));
+	physicsEngine->setSceneInnerBoundary(glm::vec3(-80, -1, -60), glm::vec3(132, 1, 60));
+
 
 	// draw in wireframe
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
