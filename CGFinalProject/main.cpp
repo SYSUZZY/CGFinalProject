@@ -83,8 +83,9 @@ int main()
 
 	// load models
 	// -----------
-	string pandaPath = "resource/model/Panda/panda.obj";
+	string pandaPath = "resource/model/Panda_animation/panda.FBX";
 	string sencePath = "resource/model/scene/scene.obj";
+	
 	
 
 	std::cout << "Start loading panda" << std::endl;
@@ -95,11 +96,14 @@ int main()
 	Model senceModel(sencePath);
 	std::cout << "Scene complete" << std::endl;
 
+	//std::cout << "Start loading MeteoritePath" << std::endl;
+	//Model MeteoriteModel(MeteoritePath);
+	//std::cout << "MeteoritePath complete" << std::endl;
+
 	// ÉèÖÃcollisionBox
 	physicsEngine = new PhysicsEngine;
 	physicsEngine->setSceneOuterBoundary(glm::vec2 (-80, -60), glm::vec2(132, 60));
 	physicsEngine->setSceneInnerBoundary(glm::vec3(-80, -1, -60), glm::vec3(132, 1, 60));
-
 
 	// draw in wireframe
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -139,6 +143,10 @@ int main()
 		glm::mat4 model_panda;
 		model_panda = glm::translate(model_panda, camera.Position); // translate it down so it's at the center of the scene
 		model_panda = glm::scale(model_panda, glm::vec3(0.01f, 0.01f, 0.01f));	// it's a bit too big for our scene, so scale it down
+
+		glm::mat4 model1;
+		model1 = glm::translate(model1, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+		model1 = glm::scale(model1, glm::vec3(0.05f, 0.05f, 0.05f));
 
 		glm::mat4 model_scene;
 		model_scene = glm::translate(model_scene, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene

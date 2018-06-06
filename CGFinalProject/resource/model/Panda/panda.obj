@@ -1,7 +1,7 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
 # 创建的文件:03.07.2015 11:18:36
 
-mtllib obj.mtl
+mtllib panda.mtl
 
 #
 # object Object04
