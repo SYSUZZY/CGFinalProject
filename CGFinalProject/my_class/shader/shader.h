@@ -4,7 +4,7 @@
 
 
 
-#include "../include/glew.h"
+#include "../dependency/glew.h"
 
 #include <glm/glm.hpp>
 

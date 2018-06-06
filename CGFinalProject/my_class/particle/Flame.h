@@ -1,5 +1,5 @@
 #pragma once
-#include "../include/glew.h"
+#include "../dependency/glew.h"
 #include <iostream>
 #include <ctime>
 #include <math.h>

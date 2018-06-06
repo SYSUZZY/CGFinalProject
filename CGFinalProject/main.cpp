@@ -5,7 +5,7 @@
 #include <fstream>
 #include <string>
 
-#include "my_class/include/glew.h"
+#include "my_class/dependency/glew.h"
 #include <GLFW/glfw3.h>
 
 #include <glm/glm.hpp>

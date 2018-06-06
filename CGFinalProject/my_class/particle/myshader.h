@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../include/glew.h"
+#include "../dependency/glew.h"
 #include <string>
 #include <fstream>
 #include <sstream>

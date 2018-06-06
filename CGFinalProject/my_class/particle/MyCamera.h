@@ -1,6 +1,6 @@
 #pragma once
 #define GLEW_STATIC
-#include "../include/glew.h"
+#include "../dependency/glew.h"
 
 #include <vector>
 #include <glm/glm.hpp>
