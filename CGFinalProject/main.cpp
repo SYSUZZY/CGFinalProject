@@ -21,7 +21,7 @@ const unsigned int SCR_WIDTH = 1000;
 const unsigned int SCR_HEIGHT = 1000;
 
 // camera
-Camera camera(glm::vec3(10.0f, 20.0f, 20.0f));
+Camera camera(glm::vec3(10.0f, 10.0f, 10.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -78,11 +78,11 @@ int main()
 
 	// load models
 	// -----------
-	string pandaPath = "resource/model/Panda/panda.obj";
+	string pandaPath = "resource/model/Panda_animation/panda.FBX";
 	string sencePath = "resource/model/scene/scene.obj";
 	//Model pandaModel(pandaPath);
 	//Model MeteoriteModel(MeteoritePath);
-	Model senceModel(sencePath);
+	Model senceModel(pandaPath);
 
 
 	// draw in wireframe
@@ -123,7 +123,7 @@ int main()
 
 		glm::mat4 model1;
 		model1 = glm::translate(model1, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-		//model1 = glm::scale(model1, glm::vec3(0.005f, 0.005f, 0.005f));
+		model1 = glm::scale(model1, glm::vec3(0.05f, 0.05f, 0.05f));
 
 		//pandaShader.setMat4("model", model);
 		//pandaModel.Draw(pandaShader);
