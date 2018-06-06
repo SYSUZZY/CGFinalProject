@@ -14,15 +14,15 @@ namespace Flame{
 			"Alpha1","Size1",
 			"Life1"
 		};//设置TransformFeedback要捕获的输出变量
-		mUpdateShader = new MyShader("my_class/particle/res/Shaders/Update.vs", "my_class/particle/res/Shaders/Update.fs", 
-								"my_class/particle/res/Shaders/Update.gs", varyings, 7);
+		mUpdateShader = new MyShader("resource/shader/Update.vs", "resource/shader/Update.fs", 
+								"resource/shader/Update.gs", varyings, 7);
 		//设置TransformFeedback缓存能够记录的顶点的数据类型
 
-		mRenderShader = new MyShader("my_class/particle/res/Shaders/Render.vs", "my_class/particle/res/Shaders/Render.fs");
+		mRenderShader = new MyShader("resource/shader/Render.vs", "resource/shader/Render.fs");
 		//设置随机纹理
 		InitRandomTexture(580);
-		mSparkTexture.loadTexture("my_class/particle/res/Textures/particle.bmp");
-		mStartTexture.loadTexture("my_class/particle/res/Textures/flame.bmp");
+		mSparkTexture.loadTexture("resource/texture/particle.bmp");
+		mStartTexture.loadTexture("resource/texture/flame.bmp");
 		mRenderShader->use();
 		mRenderShader->setInt("flameSpark", 0);
 		mRenderShader->setInt("flameStart", 1);

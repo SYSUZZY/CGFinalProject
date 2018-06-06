@@ -1,12 +1,12 @@
 #pragma once
-#include "../dependency/glew.h"
+#include "../../vendor/GL/glew.h"
 #include <iostream>
 #include <ctime>
 #include <math.h>
 #include <glm/glm.hpp>
-#include "MyCamera.h"
-#include "texture.h"
-#include "myshader.h"
+#include "../../vendor/MyCamera/MyCamera.h"
+#include "../../vendor/texture/texture.h"
+#include "../../vendor/myshader/myshader.h"
 
 namespace Flame {
 	#define PARTICLE_TYPE_LAUNCHER 0.0f
